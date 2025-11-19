@@ -58,7 +58,7 @@ func NewRootCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-
+			// 从config.toml中读取配置，更新initClientCtx
 			initClientCtx, err = config.ReadFromClientConfig(initClientCtx)
 			if err != nil {
 				return err
@@ -98,6 +98,8 @@ func NewRootCmd() *cobra.Command {
 	initRootCmd(rootCmd, encodingConfig.TxConfig, tempApp.BasicModuleManager)
 
 	// add keyring to autocli opts
+	// autocli 是一个自动生成CLI命令的工具。通过一个autocli.AppOptions结构体，指定Modules，
+	// 可以自动根据gRPC的service descriptor，生成CLI命令。
 	autoCliOpts := tempApp.AutoCliOpts()
 	autoCliOpts.ClientCtx = initClientCtx
 

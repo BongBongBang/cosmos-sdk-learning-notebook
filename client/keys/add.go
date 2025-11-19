@@ -106,7 +106,9 @@ Example:
 	return cmd
 }
 
+// 准备运行keys add命令
 func runAddCmdPrepare(cmd *cobra.Command, args []string) error {
+	// ClientQueryContext是当前命令的Context, 包含了当前命令的Flags等信息。
 	clientCtx, err := client.GetClientQueryContext(cmd)
 	if err != nil {
 		return err
