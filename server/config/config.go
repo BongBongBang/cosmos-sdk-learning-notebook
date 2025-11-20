@@ -189,6 +189,7 @@ type (
 type Config struct {
 	BaseConfig `mapstructure:",squash"`
 
+	// 测量、采集配置
 	// Telemetry defines the application telemetry configuration
 	Telemetry telemetry.Config `mapstructure:"telemetry"`
 	API       APIConfig        `mapstructure:"api"`

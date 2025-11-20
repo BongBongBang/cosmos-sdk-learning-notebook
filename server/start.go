@@ -132,6 +132,7 @@ func StartCmd(appCreator types.AppCreator, defaultNodeHome string) *cobra.Comman
 	return StartCmdWithOptions(appCreator, defaultNodeHome, StartCmdOptions{})
 }
 
+// start cmd，传递StartCmdOptions
 // StartCmdWithOptions runs the service passed in, either stand-alone or in-process with
 // CometBFT.
 func StartCmdWithOptions(appCreator types.AppCreator, defaultNodeHome string, opts StartCmdOptions) *cobra.Command {
@@ -218,6 +219,7 @@ func start(svrCtx *Context, clientCtx client.Context, appCreator types.AppCreato
 		return err
 	}
 
+	// 这里不是启动，只是获取一些必要变量
 	app, appCleanupFn, err := startApp(svrCtx, appCreator, opts)
 	if err != nil {
 		return err
@@ -337,11 +339,13 @@ func startInProcess(svrCtx *Context, svrCfg serverconfig.Config, clientCtx clien
 		}
 	}
 
+	// 启动gRpc服务
 	grpcSrv, clientCtx, err := startGrpcServer(ctx, g, svrCfg.GRPC, clientCtx, svrCtx, app)
 	if err != nil {
 		return err
 	}
 
+	// 启动API服务
 	err = startAPIServer(ctx, g, svrCfg, clientCtx, svrCtx, app, cmtCfg.RootDir, grpcSrv, metrics)
 	if err != nil {
 		return err

@@ -186,6 +186,7 @@ func txCommand() *cobra.Command {
 	return cmd
 }
 
+// App Creator
 // newApp creates the application
 func newApp(
 	logger log.Logger,

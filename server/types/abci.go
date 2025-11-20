@@ -6,6 +6,7 @@ import (
 	abci "github.com/cometbft/cometbft/abci/types"
 )
 
+// ABCI是个接口，这个接口让finite, deterministic的状态机可以通过ABCI接口被区块链引擎所驱动。
 // ABCI is an interface that enables any finite, deterministic state machine
 // to be driven by a blockchain-based replication engine via the ABCI.
 type ABCI interface {

@@ -31,12 +31,14 @@ type (
 		Get(string) any
 	}
 
+	// 这里是ABCI Application 的接口定义
 	// Application defines an application interface that wraps abci.Application.
 	// The interface defines the necessary contracts to be implemented in order
 	// to fully bootstrap and start an application.
 	Application interface {
 		ABCI
 
+		// 注册API路由
 		RegisterAPIRoutes(*api.Server, config.APIConfig)
 
 		// RegisterGRPCServerWithSkipCheckHeader registers gRPC services directly with the gRPC

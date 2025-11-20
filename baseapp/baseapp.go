@@ -67,11 +67,11 @@ type BaseApp struct {
 	logger            log.Logger
 	name              string                      // application name from abci.BlockInfo
 	db                dbm.DB                      // common DB backend
-	cms               storetypes.CommitMultiStore // Main (uncached) state
-	qms               storetypes.MultiStore       // Optional alternative multistore for querying only.
-	storeLoader       StoreLoader                 // function to handle store loading, may be overridden with SetStoreLoader()
-	grpcQueryRouter   *GRPCQueryRouter            // router for redirecting gRPC query calls
-	msgServiceRouter  *MsgServiceRouter           // router for redirecting Msg service messages
+	cms               storetypes.CommitMultiStore // 存储状态的multi store，commit过的. Main (uncached) state
+	qms               storetypes.MultiStore       // 只用于查询的multi store. Optional alternative multistore for querying only.
+	storeLoader       StoreLoader                 // store加载函数. function to handle store loading, may be overridden with SetStoreLoader()
+	grpcQueryRouter   *GRPCQueryRouter            // gRpc Query路由器。router for redirecting gRPC query calls
+	msgServiceRouter  *MsgServiceRouter           // Msg service路由器。router for redirecting Msg service messages
 	interfaceRegistry codectypes.InterfaceRegistry
 	txDecoder         sdk.TxDecoder // unmarshal []byte into sdk.Tx
 	txEncoder         sdk.TxEncoder // marshal sdk.Tx into []byte
